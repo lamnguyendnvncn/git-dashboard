@@ -1,5 +1,5 @@
 import AppSidebar from "@/components/AppSideBar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -18,10 +18,7 @@ export default function RootLayout({
       <body className={`antialiased`}>
         <SidebarProvider>
           <AppSidebar />
-          <main>
-            <SidebarTrigger />
-            {children}
-          </main>
+          <main>{children}</main>
         </SidebarProvider>
       </body>
     </html>
