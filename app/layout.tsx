@@ -1,4 +1,5 @@
 import AppSidebar from "@/components/AppSideBar";
+import { DashboardLayout } from "@/components/DashboardLayout";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -15,10 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`antialiased`} suppressHydrationWarning>
         <SidebarProvider>
           <AppSidebar />
-          <main>{children}</main>
+          <DashboardLayout>{children}</DashboardLayout>
         </SidebarProvider>
       </body>
     </html>

@@ -27,7 +27,7 @@ const items = [
 const AppSideBar = () => {
   return (
     <Sidebar>
-      <SidebarHeader className="border-b p-4">
+      <SidebarHeader className="border-b p-[18px]">
         <h2 className="text-xl font-semibold">GitTrack Dashboard</h2>
       </SidebarHeader>
       <SidebarContent>

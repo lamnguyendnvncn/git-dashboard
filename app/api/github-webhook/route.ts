@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET || "";
+const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN || "";
 
 export const POST = async (req: NextRequest) => {
   const signature = req.headers.get("x-hub-signature-256");
@@ -37,4 +38,47 @@ const verifySignature = (payload: string, signature: string | null): boolean => 
   const digest = `sha256=${hmac.update(payload).digest("hex")}`;
 
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(digest));
+};
+
+export const GET = async (req: NextRequest) => {
+  const commitInfo = await fetchCommitsInfo();
+
+  const result = {
+    commits: commitInfo,
+  };
+  return NextResponse.json(result);
+};
+
+const fetchCommitsInfo = async () => {
+  const url = `https://api.github.com/repos/lamnguyendnvncn/dummy_repo/commits`;
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`,
+      Accept: "application/vnd.github.v3+json",
+    },
+  });
+
+  if (!response.ok) {
+    return { error: "Failed to fetch repo's commits" };
+  }
+
+  return response.json();
+};
+
+const fetchPullRequestsInfo = async () => {
+  const url = `https://api.github.com/repos/lamnguyendnvncn/dummy_repo/pulls`;
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`,
+      Accept: "application/vnd.github.v3+json",
+    },
+  });
+
+  if (!response.ok) {
+    return { error: "Failed to fetch repo info" };
+  }
+
+  return response.json();
 };
