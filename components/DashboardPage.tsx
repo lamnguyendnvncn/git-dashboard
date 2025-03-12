@@ -3,11 +3,19 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GitBranch, GitCommit, GitPullRequest, Users } from "lucide-react";
 
+export const revalidate = 1;
+
 const fetchData = async () => {
   const response = await fetch("http://localhost:3001/api/github-webhook");
   const data = await response.json();
   console.log(data);
   return data;
+};
+const getCommitsNum = (data: any) => {
+  const commits = data.commits;
+  const totalCommits = Object.values(commits).reduce((acc, branchCommits) => acc + branchCommits.length, 0);
+
+  return totalCommits;
 };
 
 const DashboardPage = async () => {
@@ -22,7 +30,7 @@ const DashboardPage = async () => {
             <GitCommit className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.commits.length}</div>
+            <div className="text-2xl font-bold">{getCommitsNum(data) as number}</div>
           </CardContent>
         </Card>
         <Card>

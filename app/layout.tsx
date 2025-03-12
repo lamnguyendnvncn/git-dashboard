@@ -1,6 +1,8 @@
 import AppSidebar from "@/components/AppSideBar";
 import { DashboardLayout } from "@/components/DashboardLayout";
+import HandleWebhookTrigger from "@/components/HandleWebhookTrigger";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -21,6 +23,8 @@ export default function RootLayout({
           <AppSidebar />
           <DashboardLayout>{children}</DashboardLayout>
         </SidebarProvider>
+        <Toaster />
+        <HandleWebhookTrigger />
       </body>
     </html>
   );
