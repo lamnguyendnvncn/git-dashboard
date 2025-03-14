@@ -20,7 +20,7 @@ const items = [
   },
   {
     group: "Settings",
-    items: [{ title: "General", url: "/settings", icon: GitBranch }],
+    items: [{ title: "Repository Settings", url: "/settings", icon: GitBranch }],
   },
 ];
 
