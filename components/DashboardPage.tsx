@@ -1,5 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GitBranch, GitCommit, GitPullRequest, Users } from "lucide-react";
 
@@ -16,6 +14,18 @@ const getCommitsNum = (data: any) => {
   const totalCommits = Object.values(commits).reduce((acc, branchCommits) => acc + branchCommits.length, 0);
 
   return totalCommits;
+};
+const getPRNums = (data: any) => {
+  const prs = data.pull_requests;
+  return prs.length;
+};
+const getBranchNums = (data: any) => {
+  const branches = data.branches;
+  return branches.length;
+};
+const getContributorNums = (data: any) => {
+  const contributors = data.contributors;
+  return contributors.length;
 };
 
 const DashboardPage = async () => {
@@ -39,8 +49,7 @@ const DashboardPage = async () => {
             <GitPullRequest className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">-2 closed this week</p>
+            <div className="text-2xl font-bold">{getPRNums(data) as number}</div>
           </CardContent>
         </Card>
         <Card>
@@ -49,8 +58,7 @@ const DashboardPage = async () => {
             <GitBranch className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">24</div>
-            <p className="text-xs text-muted-foreground">+4 new this week</p>
+            <div className="text-2xl font-bold">{getBranchNums(data) as number}</div>
           </CardContent>
         </Card>
         <Card>
@@ -59,12 +67,11 @@ const DashboardPage = async () => {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">18</div>
-            <p className="text-xs text-muted-foreground">+2 new contributors</p>
+            <div className="text-2xl font-bold">{getContributorNums(data) as number}</div>
           </CardContent>
         </Card>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
@@ -155,7 +162,7 @@ const DashboardPage = async () => {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> */}
     </div>
   );
 };
