@@ -4,6 +4,7 @@ import HandleWebhookTrigger from "@/components/HandleWebhookTrigger";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
+import "./github-markdown-light.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

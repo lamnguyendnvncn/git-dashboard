@@ -6,7 +6,6 @@ export const revalidate = 1;
 const fetchData = async () => {
   const response = await fetch("http://localhost:3001/api/github-webhook");
   const data = await response.json();
-  console.log(data);
   return data;
 };
 const getCommitsNum = (data: any) => {

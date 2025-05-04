@@ -1,4 +1,4 @@
-import { Activity, GitBranch, GitPullRequest, Home } from "lucide-react";
+import { GitBranch, GitPullRequest, Home } from "lucide-react";
 
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 
@@ -6,17 +6,11 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGrou
 const items = [
   {
     group: "Overview",
-    items: [
-      { title: "Dashboard", url: "/", icon: Home },
-      { title: "Activity", url: "/activity", icon: Activity },
-    ],
+    items: [{ title: "Dashboard", url: "/", icon: Home }],
   },
   {
     group: "Repository",
-    items: [
-      { title: "Branches", url: "/branches", icon: GitBranch },
-      { title: "Pull Requests", url: "/pull-requests", icon: GitPullRequest },
-    ],
+    items: [{ title: "Code Review", url: "/code-review", icon: GitPullRequest }],
   },
   {
     group: "Settings",
